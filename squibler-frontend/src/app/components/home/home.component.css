@@ -1,0 +1,39 @@
+.example-container {
+    height: 100%;
+  }
+  
+  .example-sidenav {
+    width: 240px;
+  }
+  
+  .example-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-name {
+    margin-right: 16px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  /* For the sidebar */
+
+  
+  /* For the header */
+  .mat-toolbar {
+    background-color: #1976d2; /* Blue color */
+    color: white; /* To ensure text stands out on the blue background */
+  }
+  

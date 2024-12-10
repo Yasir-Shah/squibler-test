@@ -1,0 +1,38 @@
+<mat-sidenav-container class="example-container">
+    <!-- Sidebar -->
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
+      <mat-nav-list>
+        <a mat-list-item href="/home/editor">Home</a>
+        <a mat-list-item href="/home/profile">Profile</a>
+        <a mat-list-item (click)="logout()">Logout</a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Main content -->
+    <mat-sidenav-content>
+      <!-- Header -->
+      <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+  
+        <span class="example-spacer"></span>
+  
+        <!-- Profile & Logout -->
+        <div class="profile-section">
+            <span *ngIf="(user | async) as currentUser" class="profile-name">
+              {{ currentUser.first_name }} {{ currentUser.last_name }}
+            </span>
+            <button mat-button (click)="logout()">Logout</button>
+          </div>
+      </mat-toolbar>
+  
+      <!-- Main content area -->
+      <div class="content">
+        <h2>Welcome to Smart writer</h2>
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
+  

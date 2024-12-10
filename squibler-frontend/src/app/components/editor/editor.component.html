@@ -1,0 +1,10 @@
+<quill-editor 
+    [modules]="modules" 
+    [formats]="editorFormats"
+    (onContentChanged)="onEditorContentChanged($event)"
+>
+</quill-editor>
+<div *ngIf="isLoading" class="skeleton-container">
+    <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+</div>
+<div *ngIf="!isLoading" [innerHTML]="responseText"></div>

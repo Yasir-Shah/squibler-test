@@ -1,0 +1,36 @@
+<div class="signup-container">
+    <mat-card>
+      <mat-card-title>Signup</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="first_name" required />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="last_name" required />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" required />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="confirm_password" required />
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">
+            Signup
+          </button>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <a routerLink="/login" class="link">Already have an account? Login</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
