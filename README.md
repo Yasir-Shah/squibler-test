@@ -14,6 +14,9 @@ Once the requirements is installed. You will need to run migrations
 python manage.py makemigrations
 python manage.py migrate
 
+Note: you will need set open_api key in settings for GPT.
+variable name OPEN_API_KEY = "KEY"
+
 Setup done. You can run the project locally!
 
 

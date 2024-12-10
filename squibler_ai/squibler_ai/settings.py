@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'user.User'
-OPEN_API_KEY = "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"
+OPEN_API_KEY = "KEY"
 
 INSTALLED_APPS = [
     'user',
