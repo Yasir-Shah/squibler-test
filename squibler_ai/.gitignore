@@ -1,2 +1,5 @@
 user/migrations/
 core/migrations/
+__pycache__/
+*.pyc
+db.sqlite3

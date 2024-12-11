@@ -30,21 +30,19 @@ export class HttpService {
   }
 
   // Handle HTTP errors
-  private async handleError(error: any) {
+  private handleError(error: any) {
     let errorMessage: string;
     if (error.error instanceof ErrorEvent) {
-      // Client-side or network error
-      errorMessage = `${error.error?.detail}`;
+      // Client-side error
+      errorMessage = `Client error: ${error.error.message}`;
     } else {
-      // Backend error
-      errorMessage = `${error.error.detail}`;
+      // Server-side error
+      errorMessage = error.error?.detail || `Server error: ${error.status} - ${error.statusText}`;
     }
     console.error(errorMessage);
-
-    //await this.showToast(errorMessage, "danger");
-
     return throwError(errorMessage);
   }
+  
 
   // Set default HTTP headers
   private getHttpOptions() {

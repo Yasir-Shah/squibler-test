@@ -6,9 +6,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/auth/auth.actions';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,13 @@ import { login } from '../../store/auth/auth.actions';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [
+    CommonModule,
+    RouterLink,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    
   ]
 })
 export class LoginComponent {
@@ -41,26 +43,21 @@ export class LoginComponent {
     });
   }
 
-  // onSubmit(): void {
-  //   if (this.loginForm.valid) {
-  //     this.httpService
-  //       .post('user/login/', this.loginForm.value)
-  //       .subscribe((response: any) => {
-  //         this.authService.login(response.user, response.token);
-  //         this.router.navigate(['/profile']);
-  //       });
-  //   }
-  // }
-
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.httpService.post('user/login/', this.loginForm.value).subscribe((response: any) => {
-        // Dispatch the login action with the user and token
-        this.store.dispatch(login({ user: response.user, token: response.token }));
-        this.authService.login(response.user, response.token);
-        this.router.navigate(['/home/editor']);
-
-      });
+      this.httpService.post('user/login/', this.loginForm.value).subscribe(
+        (response: any) => {
+          // Success case
+          this.store.dispatch(login({ user: response.user, token: response.token }));
+          this.authService.login(response.user, response.token);
+          this.router.navigate(['/home/editor']);
+        },
+        (err: any) => {
+          // Error case
+          console.error('Login failed:', err);
+          alert(`Login failed: ${err}`);
+        }
+      );
     }
   }
   

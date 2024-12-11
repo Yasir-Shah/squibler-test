@@ -2,8 +2,8 @@
     <!-- Sidebar -->
     <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
       <mat-nav-list>
-        <a mat-list-item href="/home/editor">Home</a>
-        <a mat-list-item href="/home/profile">Profile</a>
+        <a mat-list-item routerLink="/home/editor">Home</a>
+        <a mat-list-item routerLink="/home/profile">Profile</a>
         <a mat-list-item (click)="logout()">Logout</a>
       </mat-nav-list>
     </mat-sidenav>
@@ -29,7 +29,6 @@
   
       <!-- Main content area -->
       <div class="content">
-        <h2>Welcome to Smart writer</h2>
         <router-outlet />
       </div>
     </mat-sidenav-content>

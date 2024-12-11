@@ -6,7 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpService } from '../../services/http.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { login } from '../../store/auth/auth.actions';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
   imports: [
+    RouterLink,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
@@ -28,8 +32,9 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private httpService: HttpService,
-    //private authService: AuthService,
-    private router: Router
+    private authService: AuthService,
+    private router: Router,
+    private store: Store,
   ) {
     this.signupForm = this.fb.group({
       first_name: ['', [Validators.required]],
@@ -50,8 +55,9 @@ export class SignupComponent {
       this.httpService
         .post('user/signup/', this.signupForm.value)
         .subscribe((response: any) => {
-         // this.authService.login(response.user, response.token);
-          this.router.navigate(['/profile']);
+          this.store.dispatch(login({ user: response.user, token: response.token }));
+          this.authService.login(response.user, response.token);
+          this.router.navigate(['/home/editor']);
         });
     }
   }
